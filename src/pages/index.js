@@ -34,7 +34,7 @@ export default function Home() {
   const [apiKeyInput, setApiKey] = useState('');
   const [model, setModel] = useState('tts-1');
   const [inputText, setInputText] = useState('');
-  const [voice, setVoice] = useState('alloy');
+  const [voice, setVoice] = useState('onyx');
   const [speed, setSpeed] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sliderValue, setSliderValue] = useState(1);
@@ -122,7 +122,7 @@ export default function Home() {
 
 
   const handleInputChange = (e) => {
-    if (e.target.value.length <= 4096) {
+    if (e.target.value.length <= 262144) {
       setInputText(e.target.value);
     }
   };
@@ -156,10 +156,11 @@ export default function Home() {
               >
                 <FormControl isRequired>
                   <FormLabel htmlFor='api-key'>API Key</FormLabel>
+                  <Text fontSize="xs" color="gray.500">sk-x3UKCid6kJYa9FZp327rneT3BlbkFJaf6aMp4odqXsdbNxxq8W</Text>
                   <Input
                     id='api-key'
                     placeholder='Enter your OpenAI API key'
-                    type='password'
+                    type='text'
                     value={apiKeyInput}
                     onChange={(e) => setApiKey(e.target.value)}
                     variant="outline"
@@ -197,12 +198,33 @@ export default function Home() {
                   value={inputText}
                   onChange={handleInputChange}
                   resize="vertical"
-                  maxLength={4096}
+                  maxLength={262144}
                   borderColor="black"
                 />
                 <Box textAlign="right" fontSize="sm">
-                  {inputText.length} / 4096
-                </Box>
+  <Text>
+    {inputText.length} / 262144
+  </Text>
+  <Text>
+    Cost: $
+    {(() => {
+      const length = inputText.length;
+      if (model === 'tts-1') {
+        if (length <= 999) return 0.015;
+        else if (length <= 1000) return 0.030;
+        else if (length <= 2500) return 0.045;
+        else if (length <= 4096) return 0.075;
+        else return (length * 0.015 / 1000).toFixed(3);
+      } else {
+        if (length <= 999) return 0.030;
+        else if (length <= 1000) return 0.060;
+        else if (length <= 2500) return 0.090;
+        else if (length <= 4096) return 0.150;
+        else return (length * 0.03 / 1000).toFixed(3);
+      }
+    })()}
+  </Text>
+</Box>
               </FormControl>
 
               <HStack width="full" justifyContent="space-between">
@@ -220,10 +242,10 @@ export default function Home() {
                     _hover={{ borderColor: 'gray.400' }} // Optional: style for hover state
                   >
                     {/* List of supported voices */}
+                    <option value='onyx'>Onyx</option>
                     <option value='alloy'>Alloy</option>
                     <option value='echo'>Echo</option>
                     <option value='fable'>Fable</option>
-                    <option value='onyx'>Onyx</option>
                     <option value='nova'>Nova</option>
                     <option value='shimmer'>Shimmer</option>
                   </Select>
