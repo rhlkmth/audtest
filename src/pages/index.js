@@ -119,7 +119,7 @@ export default function Home() {
   };
 
   const handleInputChange = (e) => {
-    if (e.target.value.length <= 262144) {
+    if (e.target.value.length <= 4096) {
       setInputText(e.target.value);
     }
   };
@@ -214,13 +214,13 @@ export default function Home() {
                   value={inputText}
                   onChange={handleInputChange}
                   resize="vertical"
-                  maxLength={262144}
+                  maxLength={4096}
                   borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
                   _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
                 />
                 <Box textAlign="right" fontSize="sm">
                   <Text>
-                    {inputText.length} / 262144
+                    {inputText.length} / 4096
                   </Text>
                   <Text>
                     Cost: $
