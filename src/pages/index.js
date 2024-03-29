@@ -1,3 +1,4 @@
+// pages/index.js
 import {
   Container,
   Flex,
@@ -124,16 +125,16 @@ export default function Home() {
   };
 
   return (
-    <Container maxW="container" h="100vh" overflowY="auto">  {/* Added Full screen height */}
-      <Container centerContent p={4} maxW="container.md">
-        <Flex direction="column" align="center" justify="center" minH="100vh" w="full">
-                    <Box
+    <Box minH="100vh" bgColor={colorMode === 'light' ? 'gray.100' : 'gray.800'}>
+      <Container maxW="container.xl">
+        <Flex direction="column" align="center" justify="center" minH="100vh" w="full" px={8}>
+          <Box
             bg={colorMode === 'light' ? 'white' : 'gray.700'}
             borderRadius="lg"
             boxShadow="lg"
             p={6}
             w="full"
-            maxW="md"
+            maxW="4xl"
           >
             <IconButton
               aria-label={`Switch to ${colorMode === 'light' ? 'dark' : 'light'} mode`}
@@ -144,7 +145,7 @@ export default function Home() {
               onClick={toggleColorMode}
               icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             />
-            <VStack spacing={6} as="form" onSubmit={handleSubmit} width="full" maxW="md">
+            <VStack spacing={6} as="form" onSubmit={handleSubmit} width="full" maxW="4xl">
               <Box bg={colorMode === 'light' ? 'black' : 'gray.600'} w="100%" p={5} borderTopRadius="md" boxShadow="lg">
                 <Heading textAlign="center" color={colorMode === 'light' ? 'white' : 'gray.200'}>
                   Open-Audio TTS
@@ -169,7 +170,7 @@ export default function Home() {
                   </a>
                 </Text>
               </Box>
-              <Grid templateColumns={{ md: '1fr', lg: '4fr 1fr' }} gap={4} width="full">  {/* Made Input Text take up more space on large screens */}
+              <Grid templateColumns={{ md: '4fr 1fr' }} gap={4} width="full">
                 <FormControl isRequired>
                   <FormLabel htmlFor="api-key">API Key</FormLabel>
                   <Text fontSize="xs" color={colorMode === 'light' ? 'gray.500' : 'gray.400'}>
@@ -216,10 +217,10 @@ export default function Home() {
                   maxLength={4096}
                   borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
                   _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
-                  style={{ width: '100%' }}  {/* Made Input Text full width */}
+                  height="200px"
                 />
                 <Box textAlign="right" fontSize="sm">
-                 <Text>
+                  <Text>
                     {inputText.length} / 4096
                   </Text>
                   <Text>
@@ -316,7 +317,7 @@ export default function Home() {
 
               {isSubmitting && (
                 <Spinner
-                 thickness="4px"
+                  thickness="4px"
                   speed="0.65s"
                   emptyColor={colorMode === 'light' ? 'gray.200' : 'gray.600'}
                   color={colorMode === 'light' ? 'black' : 'gray.400'}
@@ -335,11 +336,6 @@ export default function Home() {
           </Box>
         </Flex>
       </Container>
-    </Container>
+    </Box>
   );
 }
-
-
-
-
-
