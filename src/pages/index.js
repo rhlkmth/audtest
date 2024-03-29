@@ -125,216 +125,214 @@ export default function Home() {
   };
 
   return (
-    <Container maxW="container">
-      <Container centerContent p={4} maxW="container.md">
-        <Flex direction="column" align="center" justify="center" minH="100vh" w="full">
-          <Box
-            bg={colorMode === 'light' ? 'white' : 'gray.700'}
-            borderRadius="lg"
-            boxShadow="lg"
-            p={6}
-            w="full"
-            maxW="md"
-          >
-            <IconButton
-              aria-label={`Switch to ${colorMode === 'light' ? 'dark' : 'light'} mode`}
-              variant="ghost"
-              color="current"
-              ml="2"
-              fontSize="20px"
-              onClick={toggleColorMode}
-              icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-            />
-            <VStack spacing={6} as="form" onSubmit={handleSubmit} width="full" maxW="md">
-              <Box bg={colorMode === 'light' ? 'black' : 'gray.600'} w="100%" p={5} borderTopRadius="md" boxShadow="lg">
-                <Heading textAlign="center" color={colorMode === 'light' ? 'white' : 'gray.200'}>
-                  Open-Audio TTS
-                </Heading>
-                <Text fontSize="xs" color={colorMode === 'light' ? 'gray.100' : 'gray.400'} textAlign="center" mt={2}>
-                  Powered by OpenAI TTS
-                </Text>
-                <Text
-                  fontSize="xs"
-                  color={colorMode === 'light' ? 'gray.100' : 'gray.400'}
-                  textAlign="center"
-                  mt={2}
-                  fontWeight={'700'}
+    <Container maxW="container" minH="100vh">
+      <Flex direction="column" align="center" justify="center" minH="100vh" w="100%">
+        <Box
+          bg={colorMode === 'light' ? 'white' : 'gray.700'}
+          borderRadius="lg"
+          boxShadow="lg"
+          p={6}
+          w="full"
+          maxW="xl"
+        >
+          <IconButton
+            aria-label={`Switch to ${colorMode === 'light' ? 'dark' : 'light'} mode`}
+            variant="ghost"
+            color="current"
+            ml="2"
+            fontSize="20px"
+            onClick={toggleColorMode}
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          />
+          <VStack spacing={6} as="form" onSubmit={handleSubmit} width="full" maxW="xl">
+            <Box bg={colorMode === 'light' ? 'black' : 'gray.600'} w="100%" p={5} borderTopRadius="md" boxShadow="lg">
+              <Heading textAlign="center" color={colorMode === 'light' ? 'white' : 'gray.200'}>
+                Open-Audio TTS
+              </Heading>
+              <Text fontSize="xs" color={colorMode === 'light' ? 'gray.100' : 'gray.400'} textAlign="center" mt={2}>
+                Powered by OpenAI TTS
+              </Text>
+              <Text
+                fontSize="xs"
+                color={colorMode === 'light' ? 'gray.100' : 'gray.400'}
+                textAlign="center"
+                mt={2}
+                fontWeight={'700'}
+              >
+                <a
+                  href="https://github.com/Justmalhar/open-audio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: colorMode === 'light' ? 'gray.100' : 'gray.400' }}
                 >
-                  <a
-                    href="https://github.com/Justmalhar/open-audio"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: colorMode === 'light' ? 'gray.100' : 'gray.400' }}
-                  >
-                    View on GitHub
-                  </a>
-                </Text>
-              </Box>
-              <Grid templateColumns={{ md: '4fr 1fr' }} gap={4} width="full">
-                <FormControl isRequired>
-                  <FormLabel htmlFor="api-key">API Key</FormLabel>
-                  <Text fontSize="xs" color={colorMode === 'light' ? 'gray.500' : 'gray.400'}>
-                  </Text>
-                  <Input
-                    id="api-key"
-                    placeholder="Enter your OpenAI API key"
-                    type="text"
-                    value={apiKeyInput}
-                    onChange={(e) => setApiKey(e.target.value)}
-                    variant="outline"
-                    borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
-                    _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
-                  />
-                </FormControl>
-
-                <FormControl>
-                  <VStack align="start" spacing={0}>
-                    <FormLabel htmlFor="model">Quality</FormLabel>
-                    <HStack align="center" h="100%" mx="0" mt="2">
-                      <Switch
-                        id="model"
-                        colorScheme={colorMode === 'light' ? 'blackAlpha' : 'whiteAlpha'}
-                        isChecked={model === 'tts-1-hd'}
-                        onChange={handleModelToggle}
-                        size="md"
-                      />
-                      <FormHelperText textAlign="center" mt={'-1'}>
-                        {model === 'tts-1' ? 'High' : 'HD'}
-                      </FormHelperText>
-                    </HStack>
-                  </VStack>
-                </FormControl>
-              </Grid>
-
+                  View on GitHub
+                </a>
+              </Text>
+            </Box>
+            <Grid templateColumns={{ base: '1fr', md: '4fr 1fr' }} gap={4} width="full">
               <FormControl isRequired>
-                <FormLabel htmlFor="input-text">Input Text</FormLabel>
-                <Textarea
-                  id="input-text"
-                  placeholder="Enter the text you want to convert to speech"
-                  value={inputText}
-                  onChange={handleInputChange}
-                  resize="vertical"
-                  maxLength={4096}
+                <FormLabel htmlFor="api-key">API Key</FormLabel>
+                <Text fontSize="xs" color={colorMode === 'light' ? 'gray.500' : 'gray.400'}>
+                </Text>
+                <Input
+                  id="api-key"
+                  placeholder="Enter your OpenAI API key"
+                  type="text"
+                  value={apiKeyInput}
+                  onChange={(e) => setApiKey(e.target.value)}
+                  variant="outline"
                   borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
                   _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
                 />
-                <Box textAlign="right" fontSize="sm">
-                  <Text>
-                    {inputText.length} / 4096
-                  </Text>
-                  <Text>
-                    Cost: $
-                    {(() => {
-                      const length = inputText.length;
-                      if (model === 'tts-1') {
-                        if (length <= 999) return 0.015;
-                        else if (length <= 1000) return 0.03;
-                        else if (length <= 2500) return 0.045;
-                        else if (length <= 4096) return 0.075;
-                        else return (length * 0.015 / 1000).toFixed(3);
-                      } else {
-                        if (length <= 999) return 0.03;
-                        else if (length <= 1000) return 0.06;
-                        else if (length <= 2500) return 0.09;
-                        else if (length <= 4096) return 0.15;
-                        else return (length * 0.03 / 1000).toFixed(3);
-                      }
-                    })()}
-                  </Text>
-                </Box>
               </FormControl>
 
-              <HStack width="full" justifyContent="space-between">
-                <FormControl isRequired width="45%">
-                  <FormLabel htmlFor="voice">Voice</FormLabel>
-                  <Select
-                    id="voice"
-                    value={voice}
-                    onChange={(e) => setVoice(e.target.value)}
-                    variant="outline"
-                    placeholder="Select voice"
-                    borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
-                    focusBorderColor={colorMode === 'light' ? 'black' : 'gray.600'}
-                    colorScheme={colorMode === 'light' ? 'blackAlpha' : 'whiteAlpha'}
-                    _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
-                  >
-                    {/* List of supported voices */}
-                    <option value="shimmer" defaultValue>
-                      Shimmer
-                    </option>
-                    <option value="onyx">Onyx</option>
-                    <option value="alloy">Alloy</option>
-                    <option value="echo">Echo</option>
-                    <option value="fable">Fable</option>
-                    <option value="nova">Nova</option>
-                  </Select>
-                </FormControl>
+              <FormControl>
+                <VStack align="start" spacing={0}>
+                  <FormLabel htmlFor="model">Quality</FormLabel>
+                  <HStack align="center" h="100%" mx="0" mt="2">
+                    <Switch
+                      id="model"
+                      colorScheme={colorMode === 'light' ? 'blackAlpha' : 'whiteAlpha'}
+                      isChecked={model === 'tts-1-hd'}
+                      onChange={handleModelToggle}
+                      size="md"
+                    />
+                    <FormHelperText textAlign="center" mt={'-1'}>
+                      {model === 'tts-1' ? 'High' : 'HD'}
+                    </FormHelperText>
+                  </HStack>
+                </VStack>
+              </FormControl>
+            </Grid>
 
-                <FormControl width="40%" mt="-15">
-                  <FormLabel htmlFor="speed">Speed </FormLabel>
-                  <Slider
-                    id="speed"
-                    defaultValue={1}
-                    min={0.25}
-                    max={4}
-                    step={0.25}
-                    onChange={(v) => setSliderValue(v)}
-                    onMouseEnter={() => setShowTooltip(true)}
-                    onMouseLeave={() => setShowTooltip(false)}
-                    ref={sliderRef}
-                    aria-label="slider-ex-1"
-                  >
-                    <SliderTrack bg={colorMode === 'light' ? 'gray.200' : 'gray.600'}>
-                      <SliderFilledTrack bg={colorMode === 'light' ? 'black' : 'gray.400'} />
-                    </SliderTrack>
-                    <Tooltip
-                      hasArrow
-                      bg={colorMode === 'light' ? 'black' : 'gray.600'}
-                      color={colorMode === 'light' ? 'white' : 'gray.200'}
-                      placement="bottom"
-                      isOpen={showTooltip}
-                      label={`${sliderValue.toFixed(2)}x`}
-                    >
-                      <SliderThumb />
-                    </Tooltip>
-                  </Slider>
-                </FormControl>
-              </HStack>
-
-              <Button
-                size="lg"
-                bg={colorMode === 'light' ? 'black' : 'gray.600'}
-                color={colorMode === 'light' ? 'white' : 'gray.200'}
-                colorScheme={colorMode === 'light' ? 'black' : 'gray'}
+            <FormControl isRequired>
+              <FormLabel htmlFor="input-text">Input Text</FormLabel>
+              <Textarea
+                id="input-text"
+                placeholder="Enter the text you want to convert to speech"
+                value={inputText}
+                onChange={handleInputChange}
+                resize="vertical"
+                maxLength={4096}
                 borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
-                type="submit"
-                isLoading={isSubmitting}
-                loadingText="Generating..."
-              >
-                Create Speech
-              </Button>
+                _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
+              />
+              <Box textAlign="right" fontSize="sm">
+                <Text>
+                  {inputText.length} / 4096
+                </Text>
+                <Text>
+                  Cost: $
+                  {(() => {
+                    const length = inputText.length;
+                    if (model === 'tts-1') {
+                      if (length <= 999) return 0.015;
+                      else if (length <= 1000) return 0.03;
+                      else if (length <= 2500) return 0.045;
+                      else if (length <= 4096) return 0.075;
+                      else return (length * 0.015 / 1000).toFixed(3);
+                    } else {
+                      if (length <= 999) return 0.03;
+                      else if (length <= 1000) return 0.06;
+                      else if (length <= 2500) return 0.09;
+                      else if (length <= 4096) return 0.15;
+                      else return (length * 0.03 / 1000).toFixed(3);
+                    }
+                  })()}
+                </Text>
+              </Box>
+            </FormControl>
 
-              {isSubmitting && (
-                <Spinner
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor={colorMode === 'light' ? 'gray.200' : 'gray.600'}
-                  color={colorMode === 'light' ? 'black' : 'gray.400'}
-                  size="md"
-                />
-              )}
-              {audioUrl && (
-                <>
-                  <audio controls src={audioUrl}>
-                    Your browser does not support the audio element.
-                  </audio>
-                  <Button onClick={handleDownload}>Download MP3</Button>
-                </>
-              )}
-            </VStack>
-          </Box>
-        </Flex>
-      </Container>
+            <HStack width="full" justifyContent="space-between">
+              <FormControl isRequired width="45%">
+                <FormLabel htmlFor="voice">Voice</FormLabel>
+                <Select
+                  id="voice"
+                  value={voice}
+                  onChange={(e) => setVoice(e.target.value)}
+                  variant="outline"
+                  placeholder="Select voice"
+                  borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
+                  focusBorderColor={colorMode === 'light' ? 'black' : 'gray.600'}
+                  colorScheme={colorMode === 'light' ? 'blackAlpha' : 'whiteAlpha'}
+                  _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
+                >
+                  {/* List of supported voices */}
+                  <option value="shimmer" defaultValue>
+                    Shimmer
+                  </option>
+                  <option value="onyx">Onyx</option>
+                  <option value="alloy">Alloy</option>
+                  <option value="echo">Echo</option>
+                  <option value="fable">Fable</option>
+                  <option value="nova">Nova</option>
+                </Select>
+              </FormControl>
+
+              <FormControl width="40%" mt="-15">
+                <FormLabel htmlFor="speed">Speed </FormLabel>
+                <Slider
+                  id="speed"
+                  defaultValue={1}
+                  min={0.25}
+                  max={4}
+                  step={0.25}
+                  onChange={(v) => setSliderValue(v)}
+                  onMouseEnter={() => setShowTooltip(true)}
+                  onMouseLeave={() => setShowTooltip(false)}
+                  ref={sliderRef}
+                  aria-label="slider-ex-1"
+                >
+                  <SliderTrack bg={colorMode === 'light' ? 'gray.200' : 'gray.600'}>
+                    <SliderFilledTrack bg={colorMode === 'light' ? 'black' : 'gray.400'} />
+                  </SliderTrack>
+                  <Tooltip
+                    hasArrow
+                    bg={colorMode === 'light' ? 'black' : 'gray.600'}
+                    color={colorMode === 'light' ? 'white' : 'gray.200'}
+                    placement="bottom"
+                    isOpen={showTooltip}
+                    label={`${sliderValue.toFixed(2)}x`}
+                  >
+                    <SliderThumb />
+                  </Tooltip>
+                </Slider>
+              </FormControl>
+            </HStack>
+
+            <Button
+              size="lg"
+              bg={colorMode === 'light' ? 'black' : 'gray.600'}
+              color={colorMode === 'light' ? 'white' : 'gray.200'}
+              colorScheme={colorMode === 'light' ? 'black' : 'gray'}
+              borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
+              type="submit"
+              isLoading={isSubmitting}
+              loadingText="Generating..."
+            >
+              Create Speech
+            </Button>
+
+            {isSubmitting && (
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor={colorMode === 'light' ? 'gray.200' : 'gray.600'}
+                color={colorMode === 'light' ? 'black' : 'gray.400'}
+                size="md"
+              />
+            )}
+            {audioUrl && (
+              <>
+                <audio controls src={audioUrl}>
+                  Your browser does not support the audio element.
+                </audio>
+                <Button onClick={handleDownload}>Download MP3</Button>
+              </>
+            )}
+          </VStack>
+        </Box>
+      </Flex>
     </Container>
   );
 }
