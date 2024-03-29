@@ -132,7 +132,7 @@ export default function Home() {
           borderRadius="lg"
           boxShadow="lg"
           p={6}
-          w="full"
+          w="70%" // occupy 70% of the screen width
           maxW="xl"
         >
           <IconButton
@@ -216,6 +216,7 @@ export default function Home() {
                 maxLength={4096}
                 borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
                 _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
+                w="100%" // occupy 100% of the container width
               />
               <Box textAlign="right" fontSize="sm">
                 <Text>
