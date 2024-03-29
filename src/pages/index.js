@@ -174,7 +174,6 @@ export default function Home() {
                 <FormControl isRequired>
                   <FormLabel htmlFor="api-key">API Key</FormLabel>
                   <Text fontSize="xs" color={colorMode === 'light' ? 'gray.500' : 'gray.400'}>
-                    sk-x3UKCid6kJYa9FZp327rneT3BlbkFJaf6aMp4odqXsdbNxxq8W
                   </Text>
                   <Input
                     id="api-key"
@@ -260,7 +259,9 @@ export default function Home() {
                     _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
                   >
                     {/* List of supported voices */}
-                    <option value="shimmer">Shimmer</option>
+                    <option value="shimmer" defaultValue>
+                      Shimmer
+                    </option>
                     <option value="onyx">Onyx</option>
                     <option value="alloy">Alloy</option>
                     <option value="echo">Echo</option>
