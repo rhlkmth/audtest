@@ -246,7 +246,7 @@ export default function Home() {
                     <option value='alloy'>Alloy</option>
                     <option value='echo'>Echo</option>
                     <option value='fable'>Fable</option>
-                    <option value='nova'>Nova</option>
+                    <option value='breeze'>breeze</option>
                     <option value='shimmer'>Shimmer</option>
                   </Select>
                 </FormControl>
