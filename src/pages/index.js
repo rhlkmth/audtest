@@ -37,7 +37,7 @@ export default function Home() {
   const [apiKeyInput, setApiKey] = useState('');
   const [model, setModel] = useState('tts-1');
   const [inputText, setInputText] = useState('');
-  const [voice, setVoice] = useState('Shimmer');
+  const [voice, setVoice] = useState('shimmer');
   const [speed, setSpeed] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sliderValue, setSliderValue] = useState(1);
@@ -125,16 +125,17 @@ export default function Home() {
   };
 
   return (
-    <Container maxW="container">
-      <Container centerContent p={4} maxW="container.md">
+    <Container maxW="100vw" bg={colorMode === 'light' ? 'gray.100' : 'gray.800'} p={0}>
+      <Container centerContent p={4} maxW="100vw">
         <Flex direction="column" align="center" justify="center" minH="100vh" w="full">
           <Box
             bg={colorMode === 'light' ? 'white' : 'gray.700'}
-            borderRadius="lg"
-            boxShadow="lg"
-            p={6}
+            borderRadius="2xl"
+            boxShadow="xl"
+            p={8}
             w="full"
-            maxW="md"
+            maxW="5xl"
+            fontFamily="Poppins, sans-serif"
           >
             <IconButton
               aria-label={`Switch to ${colorMode === 'light' ? 'dark' : 'light'} mode`}
@@ -145,16 +146,16 @@ export default function Home() {
               onClick={toggleColorMode}
               icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             />
-            <VStack spacing={6} as="form" onSubmit={handleSubmit} width="full" maxW="md">
-              <Box bg={colorMode === 'light' ? 'black' : 'gray.600'} w="100%" p={5} borderTopRadius="md" boxShadow="lg">
-                <Heading textAlign="center" color={colorMode === 'light' ? 'white' : 'gray.200'}>
+            <VStack spacing={8} as="form" onSubmit={handleSubmit} width="full" maxW="md">
+              <Box bg={colorMode === 'light' ? 'black' : 'gray.600'} w="100%" p={6} borderTopRadius="md" boxShadow="lg">
+                <Heading textAlign="center" color={colorMode === 'light' ? 'white' : 'gray.200'} fontWeight="bold">
                   Open-Audio TTS
                 </Heading>
-                <Text fontSize="xs" color={colorMode === 'light' ? 'gray.100' : 'gray.400'} textAlign="center" mt={2}>
+                <Text fontSize="sm" color={colorMode === 'light' ? 'gray.100' : 'gray.400'} textAlign="center" mt={2}>
                   Powered by OpenAI TTS
                 </Text>
                 <Text
-                  fontSize="xs"
+                  fontSize="sm"
                   color={colorMode === 'light' ? 'gray.100' : 'gray.400'}
                   textAlign="center"
                   mt={2}
@@ -172,9 +173,11 @@ export default function Home() {
               </Box>
               <Grid templateColumns={{ md: '4fr 1fr' }} gap={4} width="full">
                 <FormControl isRequired>
-                  <FormLabel htmlFor="api-key">API Key</FormLabel>
+                  <FormLabel htmlFor="api-key" fontWeight="bold">
+                    API Key
+                  </FormLabel>
                   <Text fontSize="xs" color={colorMode === 'light' ? 'gray.500' : 'gray.400'}>
-                  sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                    sk-x3UKCid6kJYa9FZp327rneT3BlbkFJaf6aMp4odqXsdbNxxq8W
                   </Text>
                   <Input
                     id="api-key"
@@ -182,7 +185,7 @@ export default function Home() {
                     type="text"
                     value={apiKeyInput}
                     onChange={(e) => setApiKey(e.target.value)}
-                    variant="outline"
+                    variant="filled"
                     borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
                     _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
                   />
@@ -190,7 +193,9 @@ export default function Home() {
 
                 <FormControl>
                   <VStack align="start" spacing={0}>
-                    <FormLabel htmlFor="model">Quality</FormLabel>
+                    <FormLabel htmlFor="model" fontWeight="bold">
+                      Quality
+                    </FormLabel>
                     <HStack align="center" h="100%" mx="0" mt="2">
                       <Switch
                         id="model"
@@ -208,7 +213,9 @@ export default function Home() {
               </Grid>
 
               <FormControl isRequired>
-                <FormLabel htmlFor="input-text">Input Text</FormLabel>
+                <FormLabel htmlFor="input-text" fontWeight="bold">
+                  Input Text
+                </FormLabel>
                 <Textarea
                   id="input-text"
                   placeholder="Enter the text you want to convert to speech"
@@ -247,12 +254,14 @@ export default function Home() {
 
               <HStack width="full" justifyContent="space-between">
                 <FormControl isRequired width="45%">
-                  <FormLabel htmlFor="voice">Voice</FormLabel>
+                  <FormLabel htmlFor="voice" fontWeight="bold">
+                    Voice
+                  </FormLabel>
                   <Select
                     id="voice"
                     value={voice}
                     onChange={(e) => setVoice(e.target.value)}
-                    variant="outline"
+                    variant="filled"
                     placeholder="Select voice"
                     borderColor={colorMode === 'light' ? 'black' : 'gray.600'}
                     focusBorderColor={colorMode === 'light' ? 'black' : 'gray.600'}
@@ -260,7 +269,9 @@ export default function Home() {
                     _hover={{ borderColor: colorMode === 'light' ? 'gray.400' : 'gray.500' }}
                   >
                     {/* List of supported voices */}
-                    <option value="shimmer">Shimmer</option>
+                    <option value="shimmer" defaultValue>
+                      Shimmer
+                    </option>
                     <option value="onyx">Onyx</option>
                     <option value="alloy">Alloy</option>
                     <option value="echo">Echo</option>
@@ -270,7 +281,9 @@ export default function Home() {
                 </FormControl>
 
                 <FormControl width="40%" mt="-15">
-                  <FormLabel htmlFor="speed">Speed </FormLabel>
+                  <FormLabel htmlFor="speed" fontWeight="bold">
+                    Speed{' '}
+                  </FormLabel>
                   <Slider
                     id="speed"
                     defaultValue={1}
@@ -309,6 +322,9 @@ export default function Home() {
                 type="submit"
                 isLoading={isSubmitting}
                 loadingText="Generating..."
+                fontWeight="bold"
+                boxShadow="md"
+                _hover={{ boxShadow: 'lg' }}
               >
                 Create Speech
               </Button>
@@ -327,7 +343,16 @@ export default function Home() {
                   <audio controls src={audioUrl}>
                     Your browser does not support the audio element.
                   </audio>
-                  <Button onClick={handleDownload}>Download MP3</Button>
+                  <Button
+                    onClick={handleDownload}
+                    bg={colorMode === 'light' ? 'black' : 'gray.600'}
+                    color={colorMode === 'light' ? 'white' : 'gray.200'}
+                    fontWeight="bold"
+                    boxShadow="md"
+                    _hover={{ boxShadow: 'lg' }}
+                  >
+                    Download MP3
+                  </Button>
                 </>
               )}
             </VStack>
