@@ -161,7 +161,7 @@ export default function Home() {
                   fontWeight={'700'}
                 >
                   <a
-                    href="https://github.com/rhlkmth/audtest"
+                    href="https://github.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ color: colorMode === 'light' ? 'gray.100' : 'gray.400' }}
